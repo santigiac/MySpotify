@@ -5,29 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('titulo', 'MiSpoty — Admin')</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
-<body style="background-color: #121212;" class="min-h-screen flex flex-col">
+<body class="sp-fondo min-h-screen flex flex-col">
 
     {{-- Barra de navegación de administrador --}}
-    <nav style="background-color: #000000; border-bottom: 2px solid #1DB954;" class="px-6 py-4 flex items-center justify-between sticky top-0 z-50">
+    <nav class="sp-fondo-negro sp-borde-inferior-verde px-6 py-4 flex items-center justify-between sticky top-0 z-50">
 
         {{-- Logo y links de administración --}}
         <div class="flex items-center gap-8">
             <div class="flex items-center gap-2">
-                <span class="text-2xl font-black tracking-tight" style="color: #1DB954;">MiSpoty</span>
-                <span class="text-xs font-bold px-2 py-0.5 rounded" style="background-color: #1DB954; color: #000000;">
-                    ADMIN
-                </span>
+                <span class="text-2xl font-black tracking-tight sp-verde">MiSpoty</span>
+                <span class="text-xs font-bold px-2 py-0.5 rounded sp-badge-admin">ADMIN</span>
             </div>
             <div class="hidden sm:flex items-center gap-6">
                 <a href="{{ route('admin.canciones') }}"
-                   class="text-sm font-semibold transition hover:text-white"
-                   style="{{ request()->routeIs('admin.canciones') ? 'color: #ffffff;' : 'color: #b3b3b3;' }}">
+                   class="text-sm font-semibold transition {{ request()->routeIs('admin.canciones') ? 'sp-enlace-activo' : 'sp-enlace-nav' }}">
                     Canciones
                 </a>
                 <a href="{{ route('admin.usuarios') }}"
-                   class="text-sm font-semibold transition hover:text-white"
-                   style="{{ request()->routeIs('admin.usuarios') ? 'color: #ffffff;' : 'color: #b3b3b3;' }}">
+                   class="text-sm font-semibold transition {{ request()->routeIs('admin.usuarios') ? 'sp-enlace-activo' : 'sp-enlace-nav' }}">
                     Usuarios
                 </a>
             </div>
@@ -35,14 +32,11 @@
 
         {{-- Administrador y cerrar sesión --}}
         <div class="flex items-center gap-4">
-            <span class="text-sm text-white font-semibold">
-                {{ Auth::user()->name }}
-            </span>
+            <span class="text-sm text-white font-semibold">{{ Auth::user()->name }}</span>
             <form method="POST" action="{{ route('cerrar-sesion') }}">
                 @csrf
                 <button type="submit"
-                        class="text-sm font-semibold px-4 py-2 rounded-full border transition hover:text-black hover:bg-white"
-                        style="border-color: #535353; color: #b3b3b3;">
+                        class="text-sm font-semibold px-4 py-2 rounded-full transition sp-btn-borde">
                     Cerrar sesión
                 </button>
             </form>
@@ -55,5 +49,6 @@
         @yield('contenido')
     </main>
 
+    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

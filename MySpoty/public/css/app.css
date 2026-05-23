@@ -1,0 +1,146 @@
+/* ──────────────────────────────────────────────────────────
+   MiSpoty — Estilos personalizados (paleta Spotify)
+   ────────────────────────────────────────────────────────── */
+:root {
+    --sp-negro:    #121212;
+    --sp-oscuro:   #282828;
+    --sp-tarjeta:  #181818;
+    --sp-input:    #3e3e3e;
+    --sp-verde:    #1DB954;
+    --sp-gris:     #b3b3b3;
+    --sp-tenue:    #535353;
+    --sp-claro:    #6a6a6a;
+    --sp-error:    #ff6b6b;
+    --sp-error-bg: #3e0000;
+}
+
+/* ─── Fondos ─────────────────────────────────────────────── */
+.sp-fondo         { background-color: var(--sp-negro); }
+.sp-fondo-oscuro  { background-color: var(--sp-oscuro); }
+.sp-fondo-tarjeta { background-color: var(--sp-tarjeta); }
+.sp-fondo-input   { background-color: var(--sp-input); }
+.sp-fondo-verde   { background-color: var(--sp-verde); }
+.sp-fondo-negro   { background-color: #000000; }
+
+/* ─── Textos ─────────────────────────────────────────────── */
+.sp-verde       { color: var(--sp-verde); }
+.sp-gris        { color: var(--sp-gris); }
+.sp-tenue       { color: var(--sp-tenue); }
+.sp-claro       { color: var(--sp-claro); }
+.sp-error-texto { color: var(--sp-error); }
+
+/* ─── Bordes ─────────────────────────────────────────────── */
+.sp-borde-inferior-verde  { border-bottom: 2px solid var(--sp-verde); }
+.sp-borde-superior-oscuro { border-top: 1px solid var(--sp-oscuro); }
+.sp-borde-tenue           { border-color: var(--sp-tenue); }
+
+/* ─── Enlaces de navegación ──────────────────────────────── */
+.sp-enlace-nav       { color: var(--sp-gris); }
+.sp-enlace-nav:hover { color: #ffffff; }
+.sp-enlace-activo    { color: #ffffff; }
+
+/* ─── Campo de texto ─────────────────────────────────────── */
+.sp-campo {
+    background-color: var(--sp-input);
+    border: 1px solid var(--sp-tenue);
+    color: #ffffff;
+}
+.sp-campo:focus {
+    outline: none;
+    border-color: var(--sp-verde);
+}
+.sp-campo::placeholder { color: var(--sp-tenue); }
+
+/* ─── Caja de errores del servidor ───────────────────────── */
+.sp-caja-error {
+    background-color: var(--sp-error-bg);
+    color: var(--sp-error);
+}
+
+/* ─── Mensajes de error de validación JS ─────────────────── */
+.error-js {
+    color: var(--sp-error);
+    display: none;
+}
+
+/* ─── Checkbox ───────────────────────────────────────────── */
+.sp-checkbox       { accent-color: var(--sp-verde); }
+.sp-checkbox-negro { accent-color: #000000; }
+
+/* ─── Botón principal (verde) ────────────────────────────── */
+.sp-btn-verde {
+    background-color: var(--sp-verde);
+    color: #000000;
+}
+
+/* ─── Botón borde (cerrar sesión / bienvenida login) ─────── */
+.sp-btn-borde {
+    border: 1px solid var(--sp-tenue);
+    color: var(--sp-gris);
+    background-color: transparent;
+}
+.sp-btn-borde:hover {
+    background-color: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
+}
+
+/* ─── Botón borde variante blanca (bienvenida) ───────────── */
+.sp-btn-borde-blanco {
+    border: 1px solid var(--sp-tenue);
+    color: #ffffff;
+    background-color: transparent;
+}
+.sp-btn-borde-blanco:hover { border-color: #ffffff; }
+
+/* ─── Botón limpiar filtros ──────────────────────────────── */
+.sp-btn-limpiar {
+    background-color: var(--sp-oscuro);
+    color: var(--sp-gris);
+}
+.sp-btn-limpiar:hover { color: #ffffff; }
+
+/* ─── Badge administrador ────────────────────────────────── */
+.sp-badge-admin {
+    background-color: var(--sp-verde);
+    color: #000000;
+}
+
+/* ─── Filtros de género ──────────────────────────────────── */
+.sp-filtro {
+    background-color: var(--sp-oscuro);
+    color: var(--sp-gris);
+    cursor: pointer;
+}
+.sp-filtro-activo {
+    background-color: var(--sp-verde);
+    color: #000000;
+    cursor: pointer;
+}
+
+/* ─── Tarjeta de canción ─────────────────────────────────── */
+.sp-tarjeta { background-color: var(--sp-tarjeta); }
+
+/* ─── Placeholder de imagen ──────────────────────────────── */
+.sp-placeholder-img { background-color: var(--sp-oscuro); }
+
+/* ─── Badge de género (página show) ─────────────────────── */
+.sp-badge-genero {
+    background-color: var(--sp-oscuro);
+    color: var(--sp-verde);
+}
+
+/* ─── Sección placeholder (M4 / M5) ─────────────────────── */
+.sp-placeholder-seccion { background-color: var(--sp-oscuro); }
+
+/* ─── Paginación ─────────────────────────────────────────── */
+.sp-pagina {
+    background-color: var(--sp-oscuro);
+    color: var(--sp-gris);
+}
+.sp-pagina-activa {
+    background-color: var(--sp-verde);
+    color: #000000;
+    font-weight: bold;
+}
+.sp-pagina-punto { color: var(--sp-tenue); }

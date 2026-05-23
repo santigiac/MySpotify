@@ -44,3 +44,5 @@ function limpiarErrores() {
         spans[i].style.display = 'none';
     }
 }
+
+document.getElementById('form-login').onsubmit = validarLogin;

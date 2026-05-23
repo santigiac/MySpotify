@@ -65,3 +65,5 @@ function limpiarErrores() {
         spans[i].style.display = 'none';
     }
 }
+
+document.getElementById('form-registro').onsubmit = validarRegistro;

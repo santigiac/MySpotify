@@ -5,28 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('titulo', 'MiSpoty')</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
-<body style="background-color: #121212;" class="min-h-screen flex flex-col">
+<body class="sp-fondo min-h-screen flex flex-col">
 
     {{-- Barra de navegación --}}
-    <nav style="background-color: #000000;" class="px-6 py-4 flex items-center justify-between sticky top-0 z-50">
+    <nav class="sp-fondo-negro px-6 py-4 flex items-center justify-between sticky top-0 z-50">
 
         {{-- Logo y links de navegación --}}
         <div class="flex items-center gap-8">
-            <a href="{{ route('inicio') }}" class="text-2xl font-black tracking-tight" style="color: #1DB954;">
+            <a href="{{ route('canciones.index') }}" class="text-2xl font-black tracking-tight sp-verde">
                 MiSpoty
             </a>
             <div class="hidden sm:flex items-center gap-6">
-                <a href="{{ route('inicio') }}"
-                   class="text-sm font-semibold transition hover:text-white
-                          {{ request()->routeIs('inicio') ? 'text-white' : '' }}"
-                   style="{{ request()->routeIs('inicio') ? 'color: #ffffff;' : 'color: #b3b3b3;' }}">
-                    Inicio
+                <a href="{{ route('canciones.index') }}"
+                   class="text-sm font-semibold transition {{ request()->routeIs('canciones.*') ? 'sp-enlace-activo' : 'sp-enlace-nav' }}">
+                    Canciones
                 </a>
                 <a href="{{ route('listas-reproduccion') }}"
-                   class="text-sm font-semibold transition hover:text-white
-                          {{ request()->routeIs('listas-reproduccion') ? 'text-white' : '' }}"
-                   style="{{ request()->routeIs('listas-reproduccion') ? 'color: #ffffff;' : 'color: #b3b3b3;' }}">
+                   class="text-sm font-semibold transition {{ request()->routeIs('listas-reproduccion') ? 'sp-enlace-activo' : 'sp-enlace-nav' }}">
                     Mis listas
                 </a>
             </div>
@@ -34,14 +31,13 @@
 
         {{-- Usuario y cerrar sesión --}}
         <div class="flex items-center gap-4">
-            <span class="text-sm" style="color: #b3b3b3;">
+            <span class="text-sm sp-gris">
                 Hola, <span class="text-white font-semibold">{{ Auth::user()->name }}</span>
             </span>
             <form method="POST" action="{{ route('cerrar-sesion') }}">
                 @csrf
                 <button type="submit"
-                        class="text-sm font-semibold px-4 py-2 rounded-full border transition hover:text-black hover:bg-white"
-                        style="border-color: #535353; color: #b3b3b3;">
+                        class="text-sm font-semibold px-4 py-2 rounded-full transition sp-btn-borde">
                     Cerrar sesión
                 </button>
             </form>
@@ -54,5 +50,6 @@
         @yield('contenido')
     </main>
 
+    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

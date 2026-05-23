@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Auth\RegistroController;
 use App\Http\Controllers\Auth\SesionController;
+use App\Http\Controllers\CancionController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -28,9 +29,8 @@ Route::post('/cerrar-sesion', [SesionController::class, 'salir'])
 // Rutas de cliente
 Route::middleware(['auth', 'cliente'])->group(function () {
     Route::get('/inicio', [UsuarioController::class, 'inicio'])->name('inicio');
-    Route::get('/canciones/{id}', function () {
-        return view('cliente.inicio');
-    })->name('canciones.ver');
+    Route::get('/canciones', [CancionController::class, 'index'])->name('canciones.index');
+    Route::get('/canciones/{cancion}', [CancionController::class, 'mostrar'])->name('canciones.mostrar');
     Route::get('/listas-reproduccion', function () {
         return view('cliente.inicio');
     })->name('listas-reproduccion');
