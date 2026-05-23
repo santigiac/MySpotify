@@ -18,7 +18,7 @@
             <h2 class="text-white text-xl font-bold mt-4">Crea tu cuenta</h2>
         </div>
 
-        {{-- Errores globales --}}
+        {{-- Errores del servidor --}}
         @if ($errors->any())
             <div class="mb-4 p-3 rounded text-sm" style="background-color: #3e0000; color: #ff6b6b;">
                 @foreach ($errors->all() as $error)
@@ -27,7 +27,8 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('registro.guardar') }}" class="space-y-4">
+        <form id="form-registro" method="POST" action="{{ route('registro.guardar') }}"
+              onsubmit="validarRegistro(event)" class="space-y-4">
             @csrf
 
             {{-- Nombre --}}
@@ -40,7 +41,6 @@
                     id="nombre"
                     name="nombre"
                     value="{{ old('nombre') }}"
-                    required
                     autofocus
                     autocomplete="name"
                     class="w-full px-4 py-3 rounded text-white text-sm outline-none transition"
@@ -48,6 +48,8 @@
                     onfocus="this.style.borderColor='#1DB954'"
                     onblur="this.style.borderColor='#535353'"
                 >
+                <span id="error-nombre" class="error-js text-xs mt-1"
+                      style="color: #ff6b6b; display: none;"></span>
             </div>
 
             {{-- Email --}}
@@ -56,17 +58,18 @@
                     Correo electrónico
                 </label>
                 <input
-                    type="email"
+                    type="text"
                     id="email"
                     name="email"
                     value="{{ old('email') }}"
-                    required
                     autocomplete="email"
                     class="w-full px-4 py-3 rounded text-white text-sm outline-none transition"
                     style="background-color: #3e3e3e; border: 1px solid #535353;"
                     onfocus="this.style.borderColor='#1DB954'"
                     onblur="this.style.borderColor='#535353'"
                 >
+                <span id="error-email" class="error-js text-xs mt-1"
+                      style="color: #ff6b6b; display: none;"></span>
             </div>
 
             {{-- Contraseña --}}
@@ -78,13 +81,14 @@
                     type="password"
                     id="password"
                     name="password"
-                    required
                     autocomplete="new-password"
                     class="w-full px-4 py-3 rounded text-white text-sm outline-none transition"
                     style="background-color: #3e3e3e; border: 1px solid #535353;"
                     onfocus="this.style.borderColor='#1DB954'"
                     onblur="this.style.borderColor='#535353'"
                 >
+                <span id="error-password" class="error-js text-xs mt-1"
+                      style="color: #ff6b6b; display: none;"></span>
                 <p class="text-xs mt-1" style="color: #6a6a6a;">Mínimo 8 caracteres</p>
             </div>
 
@@ -97,13 +101,14 @@
                     type="password"
                     id="password_confirmation"
                     name="password_confirmation"
-                    required
                     autocomplete="new-password"
                     class="w-full px-4 py-3 rounded text-white text-sm outline-none transition"
                     style="background-color: #3e3e3e; border: 1px solid #535353;"
                     onfocus="this.style.borderColor='#1DB954'"
                     onblur="this.style.borderColor='#535353'"
                 >
+                <span id="error-password_confirmation" class="error-js text-xs mt-1"
+                      style="color: #ff6b6b; display: none;"></span>
             </div>
 
             {{-- Botón --}}
@@ -124,5 +129,6 @@
 
     </div>
 
+    <script src="{{ asset('js/validacion-registro.js') }}"></script>
 </body>
 </html>

@@ -18,7 +18,7 @@
             <h2 class="text-white text-xl font-bold mt-4">Inicia sesión</h2>
         </div>
 
-        {{-- Errores globales --}}
+        {{-- Errores del servidor --}}
         @if ($errors->any())
             <div class="mb-4 p-3 rounded text-sm" style="background-color: #3e0000; color: #ff6b6b;">
                 @foreach ($errors->all() as $error)
@@ -27,7 +27,8 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('login.entrar') }}" class="space-y-4">
+        <form id="form-login" method="POST" action="{{ route('login.entrar') }}"
+              onsubmit="validarLogin(event)" class="space-y-4">
             @csrf
 
             {{-- Email --}}
@@ -36,11 +37,10 @@
                     Correo electrónico
                 </label>
                 <input
-                    type="email"
+                    type="text"
                     id="email"
                     name="email"
                     value="{{ old('email') }}"
-                    required
                     autofocus
                     autocomplete="email"
                     class="w-full px-4 py-3 rounded text-white text-sm outline-none transition"
@@ -48,6 +48,8 @@
                     onfocus="this.style.borderColor='#1DB954'"
                     onblur="this.style.borderColor='#535353'"
                 >
+                <span id="error-email" class="error-js text-xs mt-1"
+                      style="color: #ff6b6b; display: none;"></span>
             </div>
 
             {{-- Contraseña --}}
@@ -59,13 +61,14 @@
                     type="password"
                     id="password"
                     name="password"
-                    required
                     autocomplete="current-password"
                     class="w-full px-4 py-3 rounded text-white text-sm outline-none transition"
                     style="background-color: #3e3e3e; border: 1px solid #535353;"
                     onfocus="this.style.borderColor='#1DB954'"
                     onblur="this.style.borderColor='#535353'"
                 >
+                <span id="error-password" class="error-js text-xs mt-1"
+                      style="color: #ff6b6b; display: none;"></span>
             </div>
 
             {{-- Recuérdame --}}
@@ -95,5 +98,6 @@
 
     </div>
 
+    <script src="{{ asset('js/validacion-login.js') }}"></script>
 </body>
 </html>
