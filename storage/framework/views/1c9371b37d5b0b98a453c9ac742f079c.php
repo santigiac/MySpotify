@@ -4,11 +4,13 @@
 
     <div class="max-w-7xl mx-auto">
 
-        
         <div class="flex items-center justify-between mb-6">
             <div>
                 <h1 class="text-3xl font-black text-white">Gestión de usuarios</h1>
-                <p class="text-sm sp-gris mt-1"><?php echo e($usuarios->total()); ?> <?php echo e($usuarios->total() === 1 ? 'usuario registrado' : 'usuarios registrados'); ?></p>
+                <p class="text-sm sp-gris mt-1">
+                    <?php echo e($usuarios->total()); ?> <?php echo e($usuarios->total() === 1 ? 'usuario registrado' : 'usuarios registrados'); ?>
+
+                </p>
             </div>
         </div>
 
@@ -56,22 +58,10 @@
                         <?php $__currentLoopData = $usuarios; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $usuario): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <tr class="sp-tabla-fila">
 
-                                
-                                <td class="px-4 py-3 text-white font-semibold">
-                                    <?php echo e($usuario->name); ?>
-
-                                </td>
-
-                                
+                                <td class="px-4 py-3 text-white font-semibold"><?php echo e($usuario->name); ?></td>
                                 <td class="px-4 py-3 sp-gris"><?php echo e($usuario->email); ?></td>
+                                <td class="px-4 py-3 sp-tenue"><?php echo e($usuario->created_at->format('d/m/Y')); ?></td>
 
-                                
-                                <td class="px-4 py-3 sp-tenue">
-                                    <?php echo e($usuario->created_at->format('d/m/Y')); ?>
-
-                                </td>
-
-                                
                                 <td class="px-4 py-3">
                                     <?php if($usuario->activo): ?>
                                         <span class="px-2 py-1 rounded text-xs font-bold sp-badge-activo">Activo</span>
@@ -80,7 +70,6 @@
                                     <?php endif; ?>
                                 </td>
 
-                                
                                 <td class="px-4 py-3">
                                     <form method="POST"
                                           action="<?php echo e(route('admin.usuarios.toggle', $usuario)); ?>"

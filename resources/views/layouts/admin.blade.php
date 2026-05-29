@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('titulo', 'MiSpoty — Admin')</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body class="sp-fondo min-h-screen flex flex-col">
@@ -61,6 +62,7 @@
     </main>
 
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/confirmar.js') }}"></script>
     @stack('scripts')
 </body>
 </html>

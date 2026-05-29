@@ -53,14 +53,7 @@
 
                 <p class="text-sm sp-tenue">
                     Duración:
-                    <span class="text-white font-semibold">
-                        <?php
-                            $minutos  = intdiv($cancion->duration, 60);
-                            $segundos = $cancion->duration % 60;
-                        ?>
-                        <?php echo e($minutos); ?>:<?php echo e(str_pad($segundos, 2, '0', STR_PAD_LEFT)); ?>
-
-                    </span>
+                    <span class="text-white font-semibold"><?php echo e($cancion->duration); ?></span>
                 </p>
 
             </div>
@@ -68,13 +61,15 @@
 
         
         <div class="mt-6 rounded-xl p-6 sp-tarjeta">
-            <p class="text-sm font-semibold mb-2 sp-tenue">Reproductor — disponible en M4</p>
-            <div class="h-12 rounded sp-placeholder-seccion"></div>
-        </div>
-
-        
-        <div class="mt-4 rounded-xl p-6 sp-tarjeta">
-            <p class="text-sm font-semibold sp-tenue">Añadir a lista de reproducción — disponible en M5</p>
+            <p class="text-xs font-semibold uppercase tracking-widest mb-4 sp-tenue">Reproductor</p>
+            <?php if($cancion->audio_file): ?>
+                <audio controls class="w-full sp-reproductor">
+                    <source src="<?php echo e(Storage::url($cancion->audio_file)); ?>" type="audio/mpeg">
+                    Tu navegador no soporta el reproductor de audio.
+                </audio>
+            <?php else: ?>
+                <p class="text-sm sp-gris">Audio no disponible.</p>
+            <?php endif; ?>
         </div>
 
     </div>

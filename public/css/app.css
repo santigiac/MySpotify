@@ -144,3 +144,102 @@
     font-weight: bold;
 }
 .sp-pagina-punto { color: var(--sp-tenue); }
+
+/* ─── Alertas flash ──────────────────────────────────────── */
+.sp-alerta-exito {
+    background-color: #0d2b1a;
+    color: var(--sp-verde);
+    border: 1px solid #1a4d2e;
+}
+.sp-alerta-error {
+    background-color: var(--sp-error-bg);
+    color: var(--sp-error);
+    border: 1px solid #7a1a1a;
+}
+
+/* ─── Tabla admin ────────────────────────────────────────── */
+.sp-tabla-cabecera {
+    background-color: var(--sp-oscuro);
+    color: var(--sp-gris);
+}
+.sp-tabla-fila {
+    border-bottom: 1px solid #222222;
+    color: var(--sp-gris);
+}
+.sp-tabla-fila:hover { background-color: #1e1e1e; }
+
+/* ─── Badges de estado usuario ───────────────────────────── */
+.sp-badge-activo {
+    background-color: #0d2b1a;
+    color: var(--sp-verde);
+}
+.sp-badge-inactivo {
+    background-color: var(--sp-error-bg);
+    color: var(--sp-error);
+}
+
+/* ─── Botón eliminar ─────────────────────────────────────── */
+.sp-btn-eliminar {
+    background-color: var(--sp-error-bg);
+    color: var(--sp-error);
+}
+.sp-btn-eliminar:hover {
+    background-color: #5c0000;
+    color: #ff9999;
+}
+
+/* ─── Select desplegable ─────────────────────────────────── */
+.sp-select {
+    background-color: var(--sp-input);
+    border: 1px solid var(--sp-tenue);
+    color: #ffffff;
+    appearance: auto;
+}
+.sp-select:focus {
+    outline: none;
+    border-color: var(--sp-verde);
+}
+.sp-select option {
+    background-color: var(--sp-oscuro);
+    color: #ffffff;
+}
+
+/* ─── SweetAlert2 — tema oscuro MiSpoty ─────────────────── */
+.sp-swal-popup {
+    background-color: #181818 !important;
+    border: 1px solid #282828 !important;
+    border-radius: 12px !important;
+}
+.swal2-title {
+    color: #ffffff !important;
+}
+.swal2-html-container {
+    color: #b3b3b3 !important;
+}
+.sp-swal-confirmar {
+    border-radius: 999px !important;
+    font-weight: 700 !important;
+    font-size: 0.875rem !important;
+}
+.sp-swal-cancelar {
+    border-radius: 999px !important;
+    font-weight: 600 !important;
+    font-size: 0.875rem !important;
+    color: #b3b3b3 !important;
+}
+
+/* ─── Reproductor de audio ───────────────────────────────── */
+.sp-reproductor {
+    width: 100%;
+    border-radius: 8px;
+}
+.sp-reproductor::-webkit-media-controls-panel {
+    background-color: #1e1e1e;
+}
+.sp-reproductor::-webkit-media-controls-play-button,
+.sp-reproductor::-webkit-media-controls-timeline,
+.sp-reproductor::-webkit-media-controls-current-time-display,
+.sp-reproductor::-webkit-media-controls-time-remaining-display,
+.sp-reproductor::-webkit-media-controls-volume-slider {
+    filter: invert(1);
+}

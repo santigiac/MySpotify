@@ -29,7 +29,7 @@ class CancionAdminController extends Controller
             $query->whereIn('genre_id', $generosSeleccionados);
         }
 
-        $canciones = $query->paginate(15);
+        $canciones = $query->paginate(6);
         $generos   = Genero::all();
 
         return view('admin.canciones.index', compact(

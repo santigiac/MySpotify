@@ -21,13 +21,17 @@ class UsuarioAdminController extends Controller
             });
         }
 
-        $usuarios = $query->orderBy('name')->paginate(20);
+        $usuarios = $query->orderBy('name')->paginate(8);
 
         return view('admin.usuarios.index', compact('usuarios', 'buscar'));
     }
 
     public function toggleActivo(Usuario $usuario)
     {
+        if ($usuario->id === auth()->id()) {
+            return back()->with('error', 'No puedes deshabilitarte a ti mismo.');
+        }
+
         if ($usuario->role === 'admin') {
             return back()->with('error', 'No se puede deshabilitar a un administrador.');
         }

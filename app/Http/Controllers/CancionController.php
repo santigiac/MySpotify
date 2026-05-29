@@ -28,7 +28,7 @@ class CancionController extends Controller
             $query->whereIn('genre_id', $generosSeleccionados);
         }
 
-        $canciones = $query->paginate(12);
+        $canciones = $query->paginate(6);
         $generos   = Genero::all();
 
         return view('cliente.canciones.index', compact(

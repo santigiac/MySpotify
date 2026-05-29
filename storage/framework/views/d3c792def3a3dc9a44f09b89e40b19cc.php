@@ -99,19 +99,13 @@
                                 </td>
 
                                 
-                                <td class="px-4 py-3 text-white font-semibold">
-                                    <?php echo e($cancion->name); ?>
-
-                                </td>
+                                <td class="px-4 py-3 text-white font-semibold"><?php echo e($cancion->name); ?></td>
 
                                 
                                 <td class="px-4 py-3 sp-gris"><?php echo e($cancion->artist); ?></td>
 
                                 
-                                <td class="px-4 py-3 sp-gris">
-                                    <?php echo e($cancion->genero?->name ?? '—'); ?>
-
-                                </td>
+                                <td class="px-4 py-3 sp-gris"><?php echo e($cancion->genero?->name ?? '—'); ?></td>
 
                                 
                                 <td class="px-4 py-3 sp-tenue"><?php echo e($cancion->duration); ?></td>
