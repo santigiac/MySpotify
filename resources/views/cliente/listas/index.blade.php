@@ -1,57 +1,57 @@
-<?php $__env->startSection('titulo', 'Mis listas — MiSpoty'); ?>
+@extends('layouts.cliente')
 
-<?php $__env->startSection('contenido'); ?>
+@section('titulo', 'Mis listas — MiSpoty')
+
+@section('contenido')
 
     <div class="max-w-7xl mx-auto">
 
-        
+        {{-- MIS LISTAS --}}
         <div class="flex items-center justify-between mb-6">
             <h1 class="text-3xl font-black text-white">Mis listas</h1>
-            <a href="<?php echo e(route('listas.crear')); ?>"
+            <a href="{{ route('listas.crear') }}"
                class="px-5 py-2.5 rounded-full font-bold text-sm transition hover:scale-105 sp-btn-verde">
                 + Nueva lista
             </a>
         </div>
 
-        <?php if($misListas->isEmpty()): ?>
+        @if ($misListas->isEmpty())
             <div class="rounded-xl p-10 text-center mb-10 sp-tarjeta">
                 <p class="sp-gris mb-3">Aún no has creado ninguna lista.</p>
-                <a href="<?php echo e(route('listas.crear')); ?>" class="text-sm font-semibold sp-verde underline">
+                <a href="{{ route('listas.crear') }}" class="text-sm font-semibold sp-verde underline">
                     Crea tu primera lista
                 </a>
             </div>
-        <?php else: ?>
+        @else
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-12">
-                <?php $__currentLoopData = $misListas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lista): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                @foreach ($misListas as $lista)
                     <div class="rounded-xl p-5 flex flex-col gap-3 sp-tarjeta">
 
-                        
+                        {{-- Nombre y visibilidad --}}
                         <div>
-                            <h2 class="text-white font-bold text-base truncate"><?php echo e($lista->name); ?></h2>
+                            <h2 class="text-white font-bold text-base truncate">{{ $lista->name }}</h2>
                             <p class="text-xs mt-1 sp-tenue">
-                                <?php echo e($lista->is_public ? '🌐 Pública' : '🔒 Privada'); ?>
-
+                                {{ $lista->is_public ? '🌐 Pública' : '🔒 Privada' }}
                                 &middot;
-                                <?php echo e($lista->canciones_count); ?> <?php echo e($lista->canciones_count === 1 ? 'canción' : 'canciones'); ?>
-
+                                {{ $lista->canciones_count }} {{ $lista->canciones_count === 1 ? 'canción' : 'canciones' }}
                             </p>
                         </div>
 
-                        
+                        {{-- Acciones --}}
                         <div class="flex items-center gap-2 mt-auto pt-2">
-                            <a href="<?php echo e(route('listas.mostrar', $lista)); ?>"
+                            <a href="{{ route('listas.mostrar', $lista) }}"
                                class="flex-1 text-center px-3 py-1.5 rounded text-xs font-bold sp-btn-verde">
                                 Ver
                             </a>
-                            <a href="<?php echo e(route('listas.editar', $lista)); ?>"
+                            <a href="{{ route('listas.editar', $lista) }}"
                                class="flex-1 text-center px-3 py-1.5 rounded text-xs font-bold sp-btn-limpiar">
                                 Editar
                             </a>
                             <form method="POST"
-                                  action="<?php echo e(route('listas.eliminar', $lista)); ?>"
-                                  data-confirmar="¿Eliminar la lista '<?php echo e($lista->name); ?>'?">
-                                <?php echo csrf_field(); ?>
-                                <?php echo method_field('DELETE'); ?>
+                                  action="{{ route('listas.eliminar', $lista) }}"
+                                  data-confirmar="¿Eliminar la lista '{{ $lista->name }}'?">
+                                @csrf
+                                @method('DELETE')
                                 <button type="submit"
                                         class="px-3 py-1.5 rounded text-xs font-bold sp-btn-eliminar">
                                     ✕
@@ -60,46 +60,43 @@
                         </div>
 
                     </div>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                @endforeach
             </div>
-        <?php endif; ?>
+        @endif
 
-        
+        {{-- LISTAS PÚBLICAS --}}
         <h2 class="text-2xl font-black text-white mb-5">Listas públicas</h2>
 
-        <?php if($listasPublicas->isEmpty()): ?>
+        @if ($listasPublicas->isEmpty())
             <div class="rounded-xl p-10 text-center sp-tarjeta">
                 <p class="sp-gris">No hay listas públicas disponibles.</p>
             </div>
-        <?php else: ?>
+        @else
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                <?php $__currentLoopData = $listasPublicas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lista): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                @foreach ($listasPublicas as $lista)
                     <div class="rounded-xl p-5 flex flex-col gap-3 sp-tarjeta">
 
                         <div>
-                            <h3 class="text-white font-bold text-base truncate"><?php echo e($lista->name); ?></h3>
-                            <p class="text-xs mt-1 sp-gris">Por <?php echo e($lista->usuario->name); ?></p>
+                            <h3 class="text-white font-bold text-base truncate">{{ $lista->name }}</h3>
+                            <p class="text-xs mt-1 sp-gris">Por {{ $lista->usuario->name }}</p>
                             <p class="text-xs mt-0.5 sp-tenue">
                                 🌐 Pública &middot;
-                                <?php echo e($lista->canciones_count); ?> <?php echo e($lista->canciones_count === 1 ? 'canción' : 'canciones'); ?>
-
+                                {{ $lista->canciones_count }} {{ $lista->canciones_count === 1 ? 'canción' : 'canciones' }}
                             </p>
                         </div>
 
                         <div class="mt-auto pt-2">
-                            <a href="<?php echo e(route('listas.mostrar', $lista)); ?>"
+                            <a href="{{ route('listas.mostrar', $lista) }}"
                                class="block text-center px-3 py-1.5 rounded text-xs font-bold sp-btn-verde">
                                 Ver
                             </a>
                         </div>
 
                     </div>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                @endforeach
             </div>
-        <?php endif; ?>
+        @endif
 
     </div>
 
-<?php $__env->stopSection(); ?>
-
-<?php echo $__env->make('layouts.cliente', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\wamp64\www\DAW2\proyectos\MySpotify\resources\views/cliente/listas/index.blade.php ENDPATH**/ ?>
+@endsection

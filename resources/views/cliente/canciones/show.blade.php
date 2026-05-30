@@ -73,6 +73,39 @@
             @endif
         </div>
 
+        {{-- Añadir a lista --}}
+        <div class="mt-4 rounded-xl p-6 sp-tarjeta">
+            <p class="text-xs font-semibold uppercase tracking-widest mb-4 sp-tenue">Añadir a lista</p>
+
+            @if ($misListas->isEmpty())
+                <p class="text-sm sp-gris">
+                    No tienes listas.
+                    <a href="{{ route('listas.crear') }}" class="font-semibold underline sp-verde">
+                        Crea una primero
+                    </a>
+                </p>
+            @else
+                <form id="form-agregar-cancion" method="POST" action="" class="flex flex-col sm:flex-row gap-3">
+                    @csrf
+                    <input type="hidden" name="cancion_id" value="{{ $cancion->id }}">
+
+                    <select id="select-lista" class="flex-1 px-4 py-3 rounded text-sm sp-select">
+                        @foreach ($misListas as $miLista)
+                            <option value="{{ $miLista->id }}"
+                                    data-url="{{ route('listas.agregar-cancion', $miLista) }}">
+                                {{ $miLista->name }}
+                            </option>
+                        @endforeach
+                    </select>
+
+                    <button type="submit"
+                            class="px-6 py-3 rounded-full font-bold text-sm transition hover:scale-105 sp-btn-verde">
+                        Añadir
+                    </button>
+                </form>
+            @endif
+        </div>
+
     </div>
 
 @endsection

@@ -72,6 +72,40 @@
             <?php endif; ?>
         </div>
 
+        
+        <div class="mt-4 rounded-xl p-6 sp-tarjeta">
+            <p class="text-xs font-semibold uppercase tracking-widest mb-4 sp-tenue">Añadir a lista</p>
+
+            <?php if($misListas->isEmpty()): ?>
+                <p class="text-sm sp-gris">
+                    No tienes listas.
+                    <a href="<?php echo e(route('listas.crear')); ?>" class="font-semibold underline sp-verde">
+                        Crea una primero
+                    </a>
+                </p>
+            <?php else: ?>
+                <form id="form-agregar-cancion" method="POST" action="" class="flex flex-col sm:flex-row gap-3">
+                    <?php echo csrf_field(); ?>
+                    <input type="hidden" name="cancion_id" value="<?php echo e($cancion->id); ?>">
+
+                    <select id="select-lista" class="flex-1 px-4 py-3 rounded text-sm sp-select">
+                        <?php $__currentLoopData = $misListas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $miLista): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($miLista->id); ?>"
+                                    data-url="<?php echo e(route('listas.agregar-cancion', $miLista)); ?>">
+                                <?php echo e($miLista->name); ?>
+
+                            </option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </select>
+
+                    <button type="submit"
+                            class="px-6 py-3 rounded-full font-bold text-sm transition hover:scale-105 sp-btn-verde">
+                        Añadir
+                    </button>
+                </form>
+            <?php endif; ?>
+        </div>
+
     </div>
 
 <?php $__env->stopSection(); ?>
